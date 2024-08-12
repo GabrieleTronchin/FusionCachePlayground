@@ -1,0 +1,51 @@
+
+version: '3'
+
+services:
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    pull_policy: always
+    container_name: portainer
+    restart: unless-stopped
+    privileged: true
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes:z
+    ports:
+      - "9000:9000"
+    networks:
+            - default
+
+  redis-monitoring:
+    image: redislabs/redisinsight:latest
+    pull_policy: always
+    ports:
+      - '8001:8001'
+    restart: unless-stopped
+    networks:
+          - default
+
+  redis:  
+    image: redis:latest
+    pull_policy: always
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - default
+
+  garnet:
+      image: 'ghcr.io/microsoft/garnet'
+      ulimits:
+        memlock: -1
+      ports:
+        - "7379:6379"
+      networks:
+        - default
+
+networks:
+  default:
+    driver: bridge
