@@ -17,10 +17,7 @@ public class SampleService(IFusionCache cache) : ISampleService
                 .GenerateBetween(5, 15)
             );
 
-
         return orders;
-
-
     }
 
 }
