@@ -1,4 +1,3 @@
-using FusionCache.Domain;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -6,7 +5,7 @@ namespace FusionCache.Domain;
 
 public static class ServiceExtension
 {
-    public static IServiceCollection AddFusionCache(
+    public static IServiceCollection AddDomain(
         this IServiceCollection services,
         IConfiguration configuration
     )
@@ -14,6 +13,9 @@ public static class ServiceExtension
         services.AddFusionCache();
 
         services.AddFusionCacheStackExchangeRedisBackplane(options => configuration.Bind("DistributedCache", options));
+
+        services.AddTransient<ISampleService, SampleService>();
+
 
         return services;
     }

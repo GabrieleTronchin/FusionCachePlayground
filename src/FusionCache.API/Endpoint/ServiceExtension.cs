@@ -1,6 +1,6 @@
-using System.Reflection;
 using FusionCache.API.Endpoint.Primitives;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Reflection;
 
 
 namespace FusionCache.API.Endpoint;

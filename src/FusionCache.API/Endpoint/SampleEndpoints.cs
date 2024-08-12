@@ -1,20 +1,22 @@
-namespace FusionCache.API.Endpoint;
-
 using FusionCache.API.Endpoint.Primitives;
+using FusionCache.Domain;
+using FusionCache.Models;
+
+namespace FusionCache.API.Endpoint;
 
 public class SampleEndpoints : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapGet(
-                "/SampleStreamEntity",
-                () =>
+                "/GetOrders/{partialDescription}",
+                async (ISampleService sampleService, string partialDescription) =>
                 {
-                    throw new NotImplementedException();
+                    return await sampleService.GetOrders(partialDescription);
                 }
             )
-            .WithName("SampleStreamEntity")
-            .Produces<IEnumerable<string>>()
+            .WithName("GetOrders")
+            .Produces<IEnumerable<Order>>()
             .WithOpenApi();
     }
 }
