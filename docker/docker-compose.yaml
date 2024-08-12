@@ -37,6 +37,15 @@ services:
     networks:
       - default
 
+  garnet:
+      image: 'ghcr.io/microsoft/garnet'
+      ulimits:
+        memlock: -1
+      ports:
+        - "7379:6379"
+      networks:
+        - default
+
 networks:
   default:
     driver: bridge
