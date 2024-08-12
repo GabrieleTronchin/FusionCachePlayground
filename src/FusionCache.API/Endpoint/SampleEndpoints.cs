@@ -1,4 +1,4 @@
-﻿namespace FusionCache.API.Endpoint;
+namespace FusionCache.API.Endpoint;
 
 using FusionCache.API.Endpoint.Primitives;
 
