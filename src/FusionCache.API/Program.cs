@@ -6,7 +6,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddFusionCache(builder.Configuration);
+builder.Services.AddDomain(builder.Configuration);
 builder.Services.AddEndpoints(typeof(SampleEndpoints).Assembly);
 
 
