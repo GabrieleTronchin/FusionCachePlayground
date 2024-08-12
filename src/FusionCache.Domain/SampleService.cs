@@ -23,7 +23,6 @@ public class SampleService(IFusionCache cache) : ISampleService
 
     /// <summary>
     /// This method simulate a slow data retrival operation.
-
     /// </summary>
     /// <param name="partialDescription"></param>
     /// <returns></returns>
