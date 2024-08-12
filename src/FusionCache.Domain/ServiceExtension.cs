@@ -1,5 +1,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ZiggyCreatures.Caching.Fusion.Backplane.StackExchangeRedis;
+using ZiggyCreatures.Caching.Fusion.Serialization.NewtonsoftJson;
+using ZiggyCreatures.Caching.Fusion;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 
 namespace FusionCache.Domain;
 
@@ -10,12 +14,20 @@ public static class ServiceExtension
         IConfiguration configuration
     )
     {
-        services.AddFusionCache();
+        string redisConnectionString = configuration.GetSection("DistributedCache:Configuration").Value 
+            ?? throw new InvalidDataException("Missing DistributedCache Configuration");
 
-        services.AddFusionCacheStackExchangeRedisBackplane(options => configuration.Bind("DistributedCache", options));
+        services.AddFusionCache()
+            .WithSerializer(
+                new FusionCacheNewtonsoftJsonSerializer()
+            ).WithDistributedCache(
+                new RedisCache(new RedisCacheOptions { Configuration = redisConnectionString })
+            )
+            .WithBackplane(
+                new RedisBackplane(new RedisBackplaneOptions { Configuration = redisConnectionString })
+            );
 
         services.AddTransient<ISampleService, SampleService>();
-
 
         return services;
     }
