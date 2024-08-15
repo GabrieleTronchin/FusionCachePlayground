@@ -17,6 +17,20 @@ public static class ServiceExtension
         string redisConnectionString = configuration.GetSection("DistributedCache:Configuration").Value 
             ?? throw new InvalidDataException("Missing DistributedCache Configuration");
 
+
+        var options = new FusionCacheOptions()
+        {
+            DefaultEntryOptions = new FusionCacheEntryOptions
+            {
+                Duration = TimeSpan.FromMinutes(1),
+                IsFailSafeEnabled = true,
+                FailSafeMaxDuration = TimeSpan.FromHours(2),
+                FailSafeThrottleDuration = TimeSpan.FromSeconds(30),
+                DistributedCacheDuration = TimeSpan.FromMinutes(1)
+            }
+        };
+
+
         services.AddFusionCache()
             .WithSerializer(
                 new FusionCacheNewtonsoftJsonSerializer()
@@ -25,7 +39,10 @@ public static class ServiceExtension
             )
             .WithBackplane(
                 new RedisBackplane(new RedisBackplaneOptions { Configuration = redisConnectionString })
-            );
+            )
+            .WithOptions(options);
+
+
 
         services.AddTransient<ISampleService, SampleService>();
 
