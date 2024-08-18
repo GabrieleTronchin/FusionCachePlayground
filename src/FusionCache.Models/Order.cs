@@ -9,6 +9,4 @@ public class Order
     public int Quantity { get; set; }
 
     public DateTime LastUpdateTime { get; set; }
-
-
 }

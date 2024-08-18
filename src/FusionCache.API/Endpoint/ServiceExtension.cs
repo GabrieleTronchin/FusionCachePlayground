@@ -1,7 +1,6 @@
+using System.Reflection;
 using FusionCache.API.Endpoint.Primitives;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using System.Reflection;
-
 
 namespace FusionCache.API.Endpoint;
 
@@ -30,9 +29,7 @@ public static class ServiceExtension
         RouteGroupBuilder? routeGroupBuilder = null
     )
     {
-        var endpoints = app.Services.GetRequiredService<
-            IEnumerable<IEndpoint>
-        >();
+        var endpoints = app.Services.GetRequiredService<IEnumerable<IEndpoint>>();
 
         IEndpointRouteBuilder builder = routeGroupBuilder is null ? app : routeGroupBuilder;
 
