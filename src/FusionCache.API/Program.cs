@@ -5,10 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 builder.Services.AddDomain(builder.Configuration);
 builder.Services.AddEndpoints(typeof(SampleEndpoints).Assembly);
-
 
 var app = builder.Build();
 
