@@ -17,7 +17,7 @@ services:
     ports:
       - "9000:9000"
     networks:
-            - default
+      - default
 
   redis-monitoring:
     image: redislabs/redisinsight:latest
@@ -26,7 +26,7 @@ services:
       - '5540:5540'
     restart: unless-stopped
     networks:
-          - default
+      - default
 
   redis:  
     image: redis:latest
@@ -36,15 +36,6 @@ services:
     restart: unless-stopped
     networks:
       - default
-
-  garnet:
-      image: 'ghcr.io/microsoft/garnet'
-      ulimits:
-        memlock: -1
-      ports:
-        - "7379:6379"
-      networks:
-        - default
 
 networks:
   default:
