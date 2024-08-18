@@ -30,7 +30,7 @@ For more detailed information, refer to the official FusionCache documentation:
  | - src/
  | | - HybridCachePlayground.API/
  | | - HybridCache.sln
-```plaintext
+```
 
 Inside the `docker` folder, you'll find a `docker-compose.yaml` file with services configured as follows:
 
