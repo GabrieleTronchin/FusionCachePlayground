@@ -20,30 +20,3 @@ FusionCache is an advanced hybrid cache that blends the benefits of `IMemoryCach
 
 For more detailed information, refer to the official FusionCache documentation:  
 [Official Documentation](https://github.com/ZiggyCreatures/FusionCache)
-
-## Project Structure
-
-```plaintext
-<project_root>/
- | - docker/
- | | - docker-compose.yaml
- | - src/
- | | - HybridCachePlayground.API/
- | | - HybridCache.sln
-```
-
-Inside the `docker` folder, you'll find a `docker-compose.yaml` file with services configured as follows:
-
-- **Redis**: The latest Redis service.
-- **Redis Insight**: A useful tool for monitoring Redis or Garnet Key Store Database.
-
-The `src` folder contains a simple project for basic interactions with Garnet. Detailed explanations of the project will be provided in subsequent chapters.
-
-Once you start the project, a Swagger page similar to this one will appear:
-
-![Swagger](./assets/Swagger.png)
-
-
-The core of this repository is in the `Domain` project, where I added a `SampleService` that uses `Bogus` to generate fake data.
-
-Several sample methods for setting and caching data are provided to test some FusionCache features.
