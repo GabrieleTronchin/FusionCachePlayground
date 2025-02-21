@@ -26,12 +26,12 @@ public class SampleService(IFusionCache cache) : ISampleService
     /// </summary>
     /// <param name="partialDescription"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<Order>> GetOrdersByDesciptionEagerRefresh(
+    public async Task<IEnumerable<Order>> GetOrdersByDescriptionEagerRefresh(
         string partialDescription
     )
     {
         var orders = await cache.GetOrSetAsync(
-            $"{nameof(SampleService)}-{nameof(GetOrdersByDesciptionEagerRefresh)}-{partialDescription}",
+            $"{nameof(SampleService)}-{nameof(GetOrdersByDescriptionEagerRefresh)}-{partialDescription}",
             await GetOrdersFromDatabase(partialDescription),
             options => options.SetDuration(TimeSpan.FromMinutes(2)).SetEagerRefresh(0.8f)
         );
@@ -44,12 +44,12 @@ public class SampleService(IFusionCache cache) : ISampleService
     /// </summary>
     /// <param name="partialDescription"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<Order>> GetOrdersByDesciptionWithFailSafe(
+    public async Task<IEnumerable<Order>> GetOrdersByDescriptionWithFailSafe(
         string partialDescription
     )
     {
         return await cache.GetOrSetAsync<IEnumerable<Order>>(
-            $"{nameof(SampleService)}-{nameof(GetOrdersByDesciptionWithFailSafe)}-{partialDescription}",
+            $"{nameof(SampleService)}-{nameof(GetOrdersByDescriptionWithFailSafe)}-{partialDescription}",
             async (ctx, ct) =>
             {
                 await Task.Delay(1000);

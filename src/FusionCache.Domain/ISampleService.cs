@@ -6,7 +6,7 @@ namespace FusionCache.Domain
     {
         Task<Order?> GetOrder(int id);
         Task<IEnumerable<Order>> GetOrders();
-        Task<IEnumerable<Order>> GetOrdersByDesciptionEagerRefresh(string partialDescription);
-        Task<IEnumerable<Order>> GetOrdersByDesciptionWithFailSafe(string partialDescription);
+        Task<IEnumerable<Order>> GetOrdersByDescriptionEagerRefresh(string partialDescription);
+        Task<IEnumerable<Order>> GetOrdersByDescriptionWithFailSafe(string partialDescription);
     }
 }
