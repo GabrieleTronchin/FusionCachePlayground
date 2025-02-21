@@ -20,28 +20,28 @@ public class SampleEndpoints : IEndpoint
             .WithOpenApi();
 
         app.MapGet(
-                "/GetOrdersByDesciptionEagerRefresh/{partialDescription}",
+                "/GetOrdersByDescriptionEagerRefresh/{partialDescription}",
                 async (ISampleService sampleService, string partialDescription) =>
                 {
-                    return await sampleService.GetOrdersByDesciptionEagerRefresh(
+                    return await sampleService.GetOrdersByDescriptionEagerRefresh(
                         partialDescription
                     );
                 }
             )
-            .WithName("GetOrdersByDesciptionEagerRefresh")
+            .WithName("GetOrdersByDescriptionEagerRefresh")
             .Produces<IEnumerable<Order>>()
             .WithOpenApi();
 
         app.MapGet(
-                "/GetOrdersByDesciptionWithFailSafe/{partialDescription}",
+                "/GetOrdersByDescriptionWithFailSafe/{partialDescription}",
                 async (ISampleService sampleService, string partialDescription) =>
                 {
-                    return await sampleService.GetOrdersByDesciptionWithFailSafe(
+                    return await sampleService.GetOrdersByDescriptionWithFailSafe(
                         partialDescription
                     );
                 }
             )
-            .WithName("GetOrdersByDesciptionWithFailSafe")
+            .WithName("GetOrdersByDescriptionWithFailSafe")
             .Produces<IEnumerable<Order>>()
             .WithOpenApi();
 
